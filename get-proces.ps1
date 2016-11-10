@@ -8,3 +8,5 @@
 
 get-Process TOTALCMD |select *
 get-Process  |select *
+
+get-Process |select Name,WorkingSet,PrivateMemorySize,VirtualMemorySize,UserProcessorTime,TotalProcessorTime | ft

@@ -6,6 +6,8 @@
 #    Get-Process -InputObject <Process[]> -IncludeUserName  [<CommonParameters>]
 #    Get-Process -InputObject <Process[]> [-ComputerName <string[]>] [-Module] [-FileVersionInfo]  [<CommonParameters>]
 
+# https://msdn.microsoft.com/cs-CZ/library/system.diagnostics.process_properties.aspx
+
 get-Process TOTALCMD |select *
 get-Process  |select *
 

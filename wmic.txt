@@ -1,0 +1,3 @@
+wmic os get LastBootUpTime
+
+wmic bios get serialnumber

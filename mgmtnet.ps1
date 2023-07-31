@@ -1,13 +1,16 @@
-# simple New-VirtualPortGroup
+# simple new-virtualportgroup
 # na vsechny esxi
-#$esxko = get-vmhost aspvm2[12345].eoutsourcing.cz,aspv1.eoutsourcing.cz
-$esxko = get-vmhost aspvm22.eoutsourcing.cz
-# vsude mame vSwitch0
-$vsvist = get-virtualswitch -VMHost $esxko -name vSwitch0
-$pogr1 = Get-VirtualPortGroup -VMHost $esxko -VirtualSwitch $vsvist -name "VM Network"
 
-# mgmtnet
-$pogr2 = new-VirtualPortGroup -VMHost $esxko -VirtualSwitch $vsvist -name "mgmtnet"
+#foreach ($esxko in get-vmhost aspvm2[12345].eoutsourcing.cz,aspv1.eoutsourcing.cz) {
+foreach ($esxko in get-vmhost aspvm2[12345].eoutsourcing.cz,aspv1.eoutsourcing.cz) {
+  echo $esxko
+  # vsude mame vSwitch0
+  $vsvist = get-virtualswitch -VMHost $esxko -name vSwitch0
+  #echo $vsvist
+  $pogr1 = get-virtualPortGroup -VMHost $esxko -virtualswitch $vsvist -name "VM Network"
+  echo $pogr1
+  # mgmtnet pg
+  $pogr2 = new-virtualPortGroup -virtualswitch $vsvist -name "mgmtnet" -vlanid 201
+  get-virtualPortGroup -VMHost $esxko -virtualswitch $vsvist -name "mgmtnet"
 
-echo $vsvist
-echo $pogr2
+}
